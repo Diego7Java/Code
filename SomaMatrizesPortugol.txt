@@ -1,0 +1,34 @@
+programa
+{
+	
+	funcao inicio()
+	{
+		real m[4][4],m2[4][4],s1=0.0,s2=0.0
+		
+		para(inteiro linha=0;linha<=3;linha++) {
+			para(inteiro coluna=0;coluna<=3;coluna++){
+				limpa()
+				escreva("\n\n",linha+1,"ºLINHA-> ",coluna+1,"ºCOLUNA")
+				escreva("\n\n[1ºMATRIZ]->[",linha+1,"]","[",coluna+1,"] :" )
+				leia(m[linha][coluna])
+				escreva("\n\n[2ºMATRIZ]->[",linha+1,"]","[",coluna+1,"] :" )
+				leia(m2[linha][coluna]) 
+				s1 +=m[linha][coluna]
+				s2 +=m2[linha][coluna]
+			}
+		}	
+			limpa()
+
+			escreva("\n\n[1ºMATRIZ]         [2ºMATRIZ]")
+			
+			para(inteiro linha=0;linha<=3;linha++) {
+				para(inteiro coluna=0;coluna<=3;coluna++) {
+					escreva("\n\n[",linha+1,"][",coluna+1,"] (",m[linha][coluna],") + ",
+					"[",linha+1,"][",coluna+1,"] (",m2[linha][coluna],") = ",m[linha][coluna] + m2[linha][coluna]) 
+			}
+		}	
+				escreva("\n\nSOMA ENTRE OS NÚMEROS DA 1º MATRIZ: ",s1)
+				escreva("\n\nSOMA ENTRE OS NÚMEROS DA 2º MATRIZ: ",s2)
+				escreva("\n\nSOMA ENTRE AS 2 MATRIZES: ",s1+s2,"\n\n")
+	
+}}
