@@ -1,0 +1,76 @@
+programa {
+	
+	funcao logico Valida(real valor) {
+		se(valor >=0 e valor <= 10 ) {
+			retorne verdadeiro
+		}
+		senao {
+			escreva("\n\nSomente são aceitos notas de 0 a 10.\n\n")
+			retorne falso
+		}
+		
+	}
+	funcao inicio() {
+
+		
+		cadeia aprovado[4],reprovado[4],nome
+		real nota1,nota2,nota3,nota4,media
+		inteiro apr = 0,repr = 0,contador = 1
+
+		enquanto(contador<=8) {
+			
+			media = 0.0
+			escreva("\n\n[",contador,"]--NOME: ")
+			leia(nome)
+			escreva("\n\nNota 1: ")
+			leia(nota1)
+			se(nao Valida(nota1)) {
+				retorne
+			}
+			escreva("\n\nNota 2: ")
+			leia(nota2)
+			se(nao Valida(nota2)) {
+				retorne
+			}
+			escreva("\n\nNota 3: ")
+			leia(nota3)
+			se(nao Valida(nota3)) {
+				retorne
+			}
+			escreva("\n\nNota 4: ")
+			leia(nota4)
+			se(nao Valida(nota4)) {
+				retorne
+			}
+
+			media= (nota1 + nota2 + nota3 + nota4) / 4
+			escreva("\n\nMÉDIA FINAL: ",media)
+			
+			
+			se(media >=6.0) {
+				escreva("\t[",nome,"]--APROVADO.")
+				se(apr<=3) {
+					aprovado[apr] = nome
+					apr++
+					contador++
+				}
+			}
+			se(media <6.0) {
+				se(repr<=3) {
+					escreva("\t[",nome,"]--REPROVADO.")
+					reprovado[repr] = nome
+					repr++
+					contador++
+				}
+			}
+		}
+		
+		para(inteiro a = 0;a<=3;a++) {
+			escreva("\n\n[APROVADO]: ",aprovado[a])
+		}
+		
+		para(inteiro r = 0;r<=3;r++) {
+			escreva("\n\n[REPROVADO]: ",reprovado[r])
+		}
+	}
+}
