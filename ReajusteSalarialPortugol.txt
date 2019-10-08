@@ -1,0 +1,68 @@
+programa
+{
+	inclua biblioteca Matematica --> mat
+	funcao inicio()
+	{	const inteiro max = 585
+		inteiro quant_funcionarios,contador[max]
+		real salarioAtual[max],salario_reajustado[max],total_reajuste =0.0,total_atual = 0.0,salariomin=998.00,reajuste,salaria_total,quant_salmin_reajuste[max],quant_salmin[max]
+		cadeia nome_funcionario[max]
+
+//PEDE PARA O PRÓPRIO USUÁRIO INFORMAR A QUANTIDADE DE FUNCIONÁRIOS QUE USARÃO O PROGRAMA.
+		escreva("\nDigite a quantidade de funcionários: ")
+		leia(quant_funcionarios)
+		
+//LAÇO DE REPETIÇÃO "PARA",USADO PARA REPETIR O PEDIDO DAS INFORMAÇÕES ATÉ ATINGIR A QUANTIDADE DE FUNCIONARIOS QUE FOI COLOCADA.
+/*EXEMPLO: SE O USUARIO DIGITOU A QUANTIA DE 2 FUNCIONARIOS,O LAÇO "PARA" PEDIRÁ AS INFORMAÇÕES ABAIXO DUAS VEZES,POIS 2
+FUNCIONÁRIOS PRECISARÃO DIGITAR SEUS DADOS*/
+		para(inteiro incremento=0;incremento<quant_funcionarios;incremento++){
+			escreva("\nDigite o nome do funcionário: ")
+			leia(nome_funcionario[incremento])
+
+			escreva("\nDigite o salário do funcionário: ")
+			leia(salarioAtual[incremento])
+			limpa()
+		}
+		
+/*LACO DE REPETIÇÃO "PARA",USADO AGORA PARA PASSAR POR TODO O VETOR,ONDE ESTÃO ARMAZENADAS AS INFORMAÇÕES
+QUE OS USUÁRIOS COLOCARAM*/
+	    para(inteiro incremento=0;incremento<quant_funcionarios;incremento++) {
+/*CONDIÇOES "SE" PARA LER E JULGAR QUAL SERÁ O REAJUSTE DE CADA FUNCIONÁRIO QUE USOU O PROGRAMA
+CONFORME SEU SALÁRIO ATUAL,AS CONDIÇÕES ESTÃO DENTRO DO LAÇO "PARA",POIS SOMENTE ASSIM SERÁ POSSÍVEL LER TODOS OS VALORES QUE FORAM DIGITADOS
+DENTRO DO VETOR*/
+		se(salarioAtual[incremento]<3*salariomin){
+			salario_reajustado[incremento] = (salarioAtual[incremento]*0.5)+salarioAtual[incremento]
+			}
+		se(salarioAtual[incremento]>=3*salariomin e salarioAtual[incremento]<=10*salariomin){
+			salario_reajustado[incremento] = (salarioAtual[incremento]*0.2)+salarioAtual[incremento]
+		}
+		se(salarioAtual[incremento]>=10*salariomin e salarioAtual[incremento]<=20*salariomin){
+			salario_reajustado[incremento]= (salarioAtual[incremento]*0.15)+salarioAtual[incremento]
+		}
+		se(salarioAtual[incremento]>20*salariomin){
+			salario_reajustado[incremento] = (salarioAtual[incremento]*0.1)+salarioAtual[incremento]
+			
+		}
+	}	//LAÇO "PARA",PARA CALCULAR OS GASTOS FINAIS,FAZENDO TODA A SOMA DE TODOS OS USUARIOS
+		para(inteiro incremento=0;incremento<quant_funcionarios;incremento++){
+		total_reajuste = salario_reajustado[incremento] + total_reajuste
+		total_atual = salarioAtual[incremento] + total_atual }
+		
+		real gastos_totais = total_reajuste - total_atual
+		gastos_totais = mat.arredondar(gastos_totais, 2)
+
+//ÚLTIMO LAÇO "PARA",PARA IMPRIMIR OS VALORES DE TODOS OS USUARIOS,UM POR UM,DO PRIMEIRO AO ÚLTIMO
+		para(inteiro incremento=0;incremento<quant_funcionarios;incremento++){
+//CALCULO PARA SABER QUANTOS SALARIOS MINIMOS O FUNCIONÁRIO POSSUI
+		quant_salmin[incremento] =salarioAtual[incremento] / salariomin
+		quant_salmin[incremento] = mat.arredondar(quant_salmin[incremento],2)
+		quant_salmin_reajuste[incremento]=salario_reajustado[incremento] / salariomin
+		quant_salmin_reajuste[incremento]=mat.arredondar(quant_salmin_reajuste[incremento],2)
+		
+		escreva("\n\nNome do ",incremento+1, "ºfuncionário: ",nome_funcionario[incremento],"\tSalário do funcionário: R$ ",salarioAtual[incremento])
+		escreva("\tQtde salário mínimo: ",quant_salmin[incremento])
+		escreva("\tsalário reajustado: R$ ",salario_reajustado[incremento])
+		escreva("\tQtde salário mínimo após reajuste: ",quant_salmin_reajuste[incremento])
+		}
+//RESULTADOS FINAIS,DESNECESSÁRIO O USO DE QUALQUER LAÇO AQUI,POIS ESTA MENSAGEM APARECERÁ SOMENTE UMA VEZ,AO FIM DO PROGRAMA.
+		escreva("\n\n=====================FOLHA DE PAGAMENTO=====================")
+		escreva("\n\nGasto TOTAL: R$ ",total_reajuste,"\tGastos com reajustes: R$ ",gastos_totais,"\n\n")}}
