@@ -1,0 +1,56 @@
+programa
+{
+	inclua biblioteca Matematica --> mat 
+	funcao inicio()
+	{
+		real soma,sub,div,mult,exp
+		real num1,num2
+		caracter opcao
+		
+		escreva("\nDigite um numero: ")
+		leia(num1)
+
+		escreva("\n(+)")
+		escreva("(-)")
+		escreva("(*)")
+		escreva("(/)")
+		escreva(("(^)"))
+
+
+		escreva("\n\nEscolha a operação: ")
+		leia(opcao)
+
+		escreva("\n\nDigite um numero: ")
+		leia(num2)
+		
+		soma = num1 + num2
+		sub = num1 - num2
+		div = num1 / num2
+		mult = num1 * num2
+		exp = mat.potencia(num1,num2)
+		
+ 
+			escolha(opcao){
+			caso '+':
+			escreva("\n\n",soma)
+			pare
+			
+			caso '-':
+			escreva("\n\n",sub)
+			pare
+			
+			caso'*':
+			escreva("\n\n",mult)
+			pare
+			
+			caso'/':
+			escreva("\n\n",div)
+			pare	
+
+			caso '^':
+			escreva("\n\n",exp)
+			pare
+			}
+		
+	}
+}
