@@ -1,0 +1,61 @@
+programa
+{
+	
+	funcao inicio()
+	{	
+		 
+		//coluna 1: salario_atual;coluna2: salario_reajustado
+		cadeia opcao,nome,name[1000],nume[1000]
+		real salario[1000][1000],quant_salariomin,salario_min=998.0,salario_atual,reajuste
+		inteiro contador=1,atual=0,atual1=0,quantidade,quant_2
+
+			escreva("\n\nQuantidade de funcionários que recebem menos do que 3 salário mínimos: ")
+			leia(quantidade)
+			escreva("\n\nQuantidade de funcionários que recebem mais do que 3 salários mínimos: ")
+			leia(quant_2)
+			
+		faca {
+			
+			escreva("\n\n[",contador,"]--NOME: ")
+			leia(nome)
+			escreva("\n\n[",contador,"]--Salário atual: ")
+			leia(salario_atual)
+
+
+			se(salario_atual<3*salario_min) {
+				se(atual<=quantidade) {
+					name[atual] = nome
+					reajuste = (salario_atual*0.5)+salario_atual
+					salario[atual][0] = reajuste
+					atual++
+					contador++
+				}
+				senao {
+					escreva("\n\nA quantidade de funcionários que recebem menos do que 3 salários mínimos foi excedida.")
+				}
+			}
+			se(salario_atual>=3*salario_min) {
+				se(atual1<=quant_2) {
+					nume[atual1] = nome
+					reajuste = (salario_atual*0.2)+salario_atual
+					salario[atual1][1] = reajuste
+					atual1++
+					contador++
+				}
+				senao {
+					escreva("\n\nA quantidade de funcionários que recebem mais do que 4 salários mínimos foi excedida.")
+				}
+			}
+
+			escreva("\n\nDeseja continuar?[S]/[N]")
+			leia(opcao)
+		}	enquanto(opcao == "S")	
+
+			para(inteiro menor=0;menor<=quantidade;menor++) {
+				escreva("\n\nNOME: ",name[menor],"Salário Reajustado[-3 SalárioM]: ",salario[menor][0])
+			}
+			para(inteiro maior=0;maior<=quant_2;maior++) {
+				escreva("\n\nNOME: ",nume[maior],"Salário Reajustado[+3 SalárioM]: ",salario[maior][1])
+			}
+		
+	}}
