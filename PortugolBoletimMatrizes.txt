@@ -1,0 +1,85 @@
+programa
+{	
+	inclua biblioteca Matematica --> mat
+
+	//FUNCAO PARA CHECAR SE O USUÁRIO DIGITOU UMA NOTA VÁLIDA(ENTRE 0 E 10)
+	funcao logico validaInput(real valor){
+
+		se(valor>10 ou valor <0) {
+				escreva("\nA nota máxima é 10,reinicie o programa e tente novamente.\n\n")
+				retorne falso
+			}senao {
+				retorne verdadeiro
+				
+			}}
+	
+	funcao inicio()
+	{	
+		//DECLARA UM VALOR FIXO,POR ISSO É UMA VARIÁVEL CONSTANTE.
+		const inteiro max= 1000
+		
+		/*DECLARANDO A MATRIZ notasAlunos[LINHAS][COLUNAS],as linhas terão como função alocar OS ALUNOS
+		As colunas terão a função de alocar as notas de CADA aluno DE CADA LINHA*/
+		real notasAlunos[max][max]
+		real mediaAlunos [max]
+		inteiro quant_bimestre,quant_alunos
+		real media=0
+		
+		//VETOR DE NOMES,SOMENTE PARA ALOCAR OS NOMES DE CADA ALUNO QUE USAR O PROGRAMA
+		cadeia nome[max]
+		
+		/*A MÉDIA ARITMÉTICA É A DIVISÃO DAS NOTAS DO ALUNO PELA QUANTIDADE DE BIMESTRE,LOGO NADA MELHOR
+		DO QUE DEIXAR A CRITÉRIO DO USUÁRIO COLOCAR A QUANTIDADE DE BIMESTRES DE SUA INSTITUIÇÃO*/
+		escreva("\nDigite a quantidade de bimestres,a média será calculada de acordo com a quantidade do mesmo: ")
+		leia(quant_bimestre)
+		//QUANTIDADE DE ALUNOS QUE USARÃO O PROGRAMA,SERÁ DEFINIDA PELA PRÓPRIA INSTITUIÇÃO
+		escreva("\nDigite a quantidade de alunos que usarão o programa: ")
+		leia(quant_alunos)
+
+				
+		//PRIMEIRO LAÇO "PARA",PERCORRERÁ SOMENTE AS LINHAS DA MATRIZ,PARA MOSTRAR ALUNO 1,ALUNO 2,ALUNO 3...ETC.
+		para(inteiro aluno=0;aluno<quant_alunos;aluno++){
+			escreva("\n\t-------------------------")
+			escreva("\n\tNome: ")
+			leia(nome[aluno])
+			//SEGUNDO LAÇO "PARA",PERCORRERÁ AS COLUNAS DA MATRIZ,PARA MOSTRAR AS NOTAS DE CADA ALUNO DE CADA LINHA,EX: NOTA 1º BIMESTRE,2ºBIMESTRE...ETC.
+			para(inteiro nota =0;nota<quant_bimestre;nota++){
+				escreva("\n\tAluno ",aluno+1,"-[",nome[aluno],"]","--",nota+1,"ºbimestre:")
+				leia(notasAlunos[aluno][nota])
+				se (nao validaInput(notasAlunos[aluno][nota])) {
+					retorne
+			}
+			//VARIÁVEL MÉDIA CRIADA APENAS PARA PEGAR AS NOTAS DE CADA ALUNO.
+				media = media+ notasAlunos[aluno][nota]
+			}
+			//AGORA SIM,VETOR MEDIA,PARA calcular as NOTAS DE CADA ALUNO,1 POR 1.
+			mediaAlunos[aluno] = media / quant_bimestre
+			mediaAlunos[aluno] =mat.arredondar(mediaAlunos[aluno],2)
+			media = 0.0
+			
+		}
+		
+		//LAÇO FINAL "PARA",PARA IMPRIMIR NA TELA OS RESULTADOS DE CADA ALUNO,LENDO O CONTEÚDO DE TODA A MATRIZ,TANTO AS LINHAS QUANTO AS COLUNAS.
+		escreva("\n\n======================================MÉDIA====================================")
+		para(inteiro contador =0;contador<quant_alunos;contador++){
+			escreva("\n\n===============================================================================")
+			escreva("\n\nMÉDIA FINAL-","[",nome[contador],"]: ",mediaAlunos[contador],"\n\n")
+			//CONDIÇÕES "SE",PARA JULGAR SE O ALUNO FOI APROVADO OU REPROVADO DE ACORDO COM SUA MÉDIA.
+			se(mediaAlunos[contador]>=5 e mediaAlunos[contador]<=8){
+				escreva("RESULTADO FINAL: APROVADO(a).\n\n")
+			}
+			se(mediaAlunos[contador]<5 e mediaAlunos[contador]>4.5){
+				escreva("O aluno(a) está de EXAME FINAL\n\n")
+			}
+			se(mediaAlunos[contador]<4.5){
+			escreva("\nO aluno(a) está REPROVADO(a).\n\n")
+		}	se(mediaAlunos[contador]>8 e mediaAlunos[contador]<10){
+			escreva("\nParabéns pelo desempenho: APROVADO(a).\n\n")
+		}    se(mediaAlunos[contador]==10){
+			escreva("\nEXCELENTE,APROVADO(a) COM NOTA MÁXIMA!!!\n\n")
+		}
+			}
+		}
+		
+	
+}
